@@ -15,7 +15,7 @@ const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps, curl, or same-origin)
-    if (!origin || origin.startsWith('http://localhost') || origin === allowedOrigin) {
+    if (!origin || origin.startsWith('http://localhost') || origin === allowedOrigin || origin.endsWith('.vercel.app')) {
       callback(null, true);
     } else {
       callback(new Error('Blocked by CORS policy'));

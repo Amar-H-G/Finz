@@ -12,8 +12,7 @@ import {
   RefreshCw,
   Menu,
   X,
-  Sparkles,
-  Database
+  Sparkles
 } from 'lucide-react';
 import { getReviewItems, seedSampleData } from '../../services/api.js';
 
@@ -68,37 +67,29 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-slate-950/80 backdrop-blur-xl transition-all">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Brand Logo */}
           <div className="flex items-center space-x-6">
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="relative">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 p-0.5 shadow-glow-emerald group-hover:scale-105 transition-transform duration-300">
-                  <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                    <span className="font-mono font-bold text-lg text-emerald-400 tracking-tighter">FZ</span>
-                  </div>
-                </div>
-                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
+              <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-600/20 group-hover:bg-emerald-700 transition-colors">
+                <span className="font-mono font-extrabold text-lg tracking-tight">FZ</span>
               </div>
 
               <div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-lg font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors">
+                  <span className="text-xl font-bold tracking-tight text-slate-900">
                     Finz
                   </span>
-                  <span className="px-1.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="px-1.5 py-0.5 text-[10px] font-mono font-bold uppercase tracking-wider rounded bg-emerald-100 text-emerald-800 border border-emerald-200">
                     AI-Native
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400 font-medium -mt-0.5 flex items-center gap-1">
+                <div className="text-xs text-slate-500 font-medium -mt-0.5 flex items-center gap-1.5">
                   <span>NYC Restaurant Co.</span>
-                  <span className="text-slate-600">•</span>
-                  <span className="text-emerald-400/80">Atlas Live</span>
+                  <span className="text-slate-300">•</span>
+                  <span className="text-emerald-700 font-semibold">Live System</span>
                 </div>
               </div>
             </Link>
@@ -113,49 +104,49 @@ export default function Navbar() {
                 <Link
                   key={item.to}
                   to={item.to}
-                  className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all relative ${
+                  className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-bold tracking-wide transition-all relative ${
                     isActive
-                      ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 shadow-xs'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]'
+                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
 
                   {item.badge > 0 && (
-                    <span className="ml-1 px-1.5 py-0.2 bg-amber-500 text-slate-950 text-[10px] font-black rounded-full shadow-glow-amber animate-pulse">
+                    <span className="ml-1 px-1.5 py-0.2 bg-amber-500 text-white text-[10px] font-extrabold rounded-full animate-pulse">
                       {item.badge}
                     </span>
                   )}
 
                   {item.isAi && (
-                    <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse-subtle ml-0.5" />
+                    <Sparkles className="w-3 h-3 text-emerald-600 ml-0.5" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Quick Action Buttons */}
+          {/* Quick Action Button */}
           <div className="hidden sm:flex items-center space-x-3">
             <button
               onClick={handleSeedDemo}
               disabled={seeding}
-              className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border ${
+              className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
                 seedSuccess
-                  ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300 shadow-glow-emerald'
-                  : 'bg-white/[0.03] border-white/[0.1] text-slate-300 hover:bg-white/[0.08] hover:border-white/[0.2] hover:text-white'
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                  : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 shadow-2xs'
               }`}
               title="Reload the 102 verified transactions for NYC Restaurant Co."
             >
               {seedSuccess ? (
                 <>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                   <span>NYC Data Loaded!</span>
                 </>
               ) : (
                 <>
-                  <RefreshCw className={`w-3.5 h-3.5 text-emerald-400 ${seeding ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`w-4 h-4 text-emerald-600 ${seeding ? 'animate-spin' : ''}`} />
                   <span>{seeding ? 'Syncing...' : 'Load NYC Data'}</span>
                 </>
               )}
@@ -166,7 +157,7 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-slate-400 hover:text-white"
+              className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -176,7 +167,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-b border-white/[0.08] bg-slate-950/95 backdrop-blur-2xl px-4 py-4 space-y-1">
+        <div className="lg:hidden border-b border-slate-200 bg-white px-4 py-3 space-y-1 shadow-md">
           {navLinks.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.to;
@@ -185,18 +176,18 @@ export default function Navbar() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-medium ${
+                className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold ${
                   isActive
-                    ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
-                    : 'text-slate-400 hover:bg-white/[0.04] hover:text-slate-200'
+                    ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
                 <div className="flex items-center space-x-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`} />
                   <span>{item.label}</span>
                 </div>
                 {item.badge > 0 && (
-                  <span className="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 text-xs font-bold">
+                  <span className="px-2 py-0.5 rounded-full bg-amber-500 text-white text-xs font-bold">
                     {item.badge}
                   </span>
                 )}
@@ -204,11 +195,11 @@ export default function Navbar() {
             );
           })}
 
-          <div className="pt-3 border-t border-white/[0.06]">
+          <div className="pt-2 border-t border-slate-100">
             <button
               onClick={() => { setMobileMenuOpen(false); handleSeedDemo(); }}
               disabled={seeding}
-              className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400"
+              className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 text-white shadow-xs"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${seeding ? 'animate-spin' : ''}`} />
               <span>{seeding ? 'Syncing...' : 'Load Verified NYC Data'}</span>
